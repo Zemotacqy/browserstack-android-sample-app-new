@@ -1,0 +1,19 @@
+language: android
+android:
+  components:
+    - tools
+    - platform-tools
+    - tools
+    - build-tools
+before_install:
+  - yes | sdkmanager "platforms;android-27"
+install:
+  - ./gradlew clean assembleDebug
+script:
+  - ./gradlew test
+addons:
+  browserstack:
+    username: "BROWSERSTACK_USERNAME"
+    access_key:
+      secure: "BrowserStack access key after travis encrypt"
+    app_path: 'browserstack_android_sample/build/outputs/apk/debug/browserstack_android_sample-debug.apk'
