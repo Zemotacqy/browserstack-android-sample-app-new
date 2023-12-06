@@ -24,11 +24,10 @@ steps:
     tasks: 'assembleDebug'
 - task: BrowserStackConfig@0
   inputs:
-    BrowserStackServiceEndPoint: 'Browserstack Connection'
-    browserstackLocal: true
+    BrowserStackServiceEndPoint: 'Debug AAP-12160'
 - task: BrowserStackAppUploader@0
   inputs:
-    appPath: 'browserstack_android_sample/build/outputs/apk/debug/browserstack_android_sample-debug.apk'
+    appPath: 'Wikipedia.apk'
 - task: Maven@3
   inputs:
     mavenPomFile: 'android/testng-examples/pom.xml'
