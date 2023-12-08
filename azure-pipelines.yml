@@ -11,36 +11,14 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: Gradle@2
-  inputs:
-    workingDirectory: ''
-    gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleDebug'
 - task: BrowserStackConfig@0
   inputs:
     BrowserStackServiceEndPoint: 'Debug AAP-12160'
 - task: BrowserStackAppUploader@0
   inputs:
     appPath: 'Wikipedia.apk'
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'android/testng-examples/pom.xml'
-    goals: 'test -P first'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: false
-    mavenOptions: '-Xmx3072m'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
 - task: BrowserStackResults@0
 - task: BrowserStackStopLocal@0
+- task: Bash@3
+  inputs:
+    filePath: 'script.sh'
