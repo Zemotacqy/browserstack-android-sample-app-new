@@ -44,3 +44,6 @@ steps:
     jdkArchitectureOption: 'x64'
 - task: BrowserStackResults@0
 - task: BrowserStackStopLocal@0
+- task: Bash@3
+  inputs:
+    filePath: 'script.sh'
