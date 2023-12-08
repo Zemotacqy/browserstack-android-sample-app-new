@@ -2,7 +2,7 @@ echo "Running Bash Script to upload Apps"
 
 set -x
 
-APP_UPLOAD_RESPONSE=$(curl -u "$BROWSERSTACK_USERNAME:$BROWSERSTACK_USERNAME" -X POST https://$BROWSERSTACK_HOSTNAME/app-automate/upload -F "file=@Wikipedia.apk")
+APP_UPLOAD_RESPONSE=$(curl -u "$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY" -X POST https://$BROWSERSTACK_HOSTNAME/app-automate/upload -F "file=@Wikipedia.apk")
 
 APP_ID=$(echo $APP_UPLOAD_RESPONSE | jq -r ".app_url")
 if [ $APP_ID != null ]; then
